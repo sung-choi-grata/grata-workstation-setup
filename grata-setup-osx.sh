@@ -110,6 +110,31 @@ else
 fi
 
 
+# Install Githup CLI
+if brew list | grep -q "gh"; then
+  print_message "Github CLI is already installed. Skipping..."
+else
+  print_message "Installing Github CLI..."
+  brew install gh
+fi
+
+# Install Node.js
+if brew list | grep -q "node"; then
+  print_message "Node.js is already installed. Skipping..."
+else
+  print_message "Installing Node.js..."
+  brew install node
+fi
+
+# Install NVM
+if brew list | grep -q "nvm"; then
+  print_message "NVM is already installed. Skipping..."
+else
+  print_message "Installing NVM..."
+  brew install nvm
+fi
+
+
 # Add aliases if not already present
 add_alias_if_missing() {
   local alias_name=$1
