@@ -224,11 +224,11 @@ fi
 
 # Add NVM configuration to .zshrc if not present
 print_message "Configuring NVM in .zshrc..."
-NVM_CONFIG="export NVM_DIR=~/.nvm
-[ -s \"\$NVM_DIR/nvm.sh\" ] && \\. \"\$NVM_DIR/nvm.sh\"
-[ -s \"\$NVM_DIR/bash_completion\" ] && \\. \"\$NVM_DIR/bash_completion\""
+NVM_CONFIG='export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"'
 
-if ! grep -q "export NVM_DIR=~/.nvm" "$ZSHRC"; then
+if ! grep -q "export NVM_DIR=$HOME/.nvm" "$ZSHRC"; then
   echo "$NVM_CONFIG" >> "$ZSHRC"
   print_message "Added NVM configuration to .zshrc"
 else
