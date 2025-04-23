@@ -5,6 +5,7 @@ PYTHON_VERSION="3.13"
 BREW_PATH="/opt/homebrew/bin/brew"
 ZPROFILE=~/.zprofile
 ZSHRC=~/.zshrc
+NVM_DIR=~/.nvm
 
 # Function to print messages with formatting
 function print_message() {
