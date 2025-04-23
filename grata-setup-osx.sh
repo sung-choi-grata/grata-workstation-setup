@@ -4,6 +4,7 @@
 PYTHON_VERSION="3.13"
 BREW_PATH="/opt/homebrew/bin/brew"
 ZPROFILE=~/.zprofile
+ZSHRC=~/.zshrc
 
 # Function to print messages with formatting
 function print_message() {
@@ -23,6 +24,13 @@ add_alias_if_missing() {
     print_message "Alias $alias_name already exists. Skipping..."
   fi
 }
+
+# Ensure ~/.zshrc exists
+if [ ! -f "$ZSHRC" ]; then
+  print_message "Creating ~/.zshrc..."
+  touch "$ZSHRC"
+fi
+
 
 # Ensure ~/.zprofile exists
 if [ ! -f "$ZPROFILE" ]; then
@@ -213,6 +221,18 @@ else
   brew install nvm
 fi
 
+# Add NVM configuration to .zshrc if not present
+print_message "Configuring NVM in .zshrc..."
+NVM_CONFIG="export NVM_DIR=~/.nvm
+[ -s \"\$NVM_DIR/nvm.sh\" ] && \\. \"\$NVM_DIR/nvm.sh\"
+[ -s \"\$NVM_DIR/bash_completion\" ] && \\. \"\$NVM_DIR/bash_completion\""
+
+if ! grep -q "export NVM_DIR=~/.nvm" "$ZSHRC"; then
+  echo "$NVM_CONFIG" >> "$ZSHRC"
+  print_message "Added NVM configuration to .zshrc"
+else
+  print_message "NVM configuration already exists in .zshrc. Skipping..."
+fi
 
 
 
