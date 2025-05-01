@@ -84,6 +84,8 @@ else
   print_message "Installing Python $PYTHON_VERSION..."
   brew install python@$PYTHON_VERSION
   brew link python@$PYTHON_VERSION --force --overwrite
+  print_message "Updating python path in ~/.zprofile"  
+  echo "export PATH=/opt/homebrew/opt/python@$PYTHON_VERSION/bin:$PATH" >> ~/.zprofile
 fi
 
 # Install git
