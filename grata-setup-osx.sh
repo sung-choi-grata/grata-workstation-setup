@@ -88,6 +88,34 @@ else
   echo "export PATH=/opt/homebrew/opt/python@$PYTHON_VERSION/bin:$PATH" >> ~/.zprofile
 fi
 
+# Install pyenv
+if brew list | grep -q "pyenv"; then
+  print_message "pyenv is already installed. Skipping..."
+else
+  print_message "Installing pyenv..."
+  brew install pyenv
+  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zprofile
+  echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zprofile
+  echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+fi
+
+# install pipx
+if brew list | grep -q "pipx"; then
+  print_message "pipx is already installed. Skipping..."
+else
+  print_message "Installing pipx..."
+  brew install pipx
+fi
+
+# install postgres
+if brew list | grep -q "postgresql"; then
+  print_message "postgresql is already installed. Skipping..."
+else
+  print_message "Installing postgresql..."
+  brew install postgresql
+fi
+
+
 # Install git
 if brew list | grep -q "git"; then
   print_message "Git is already installed. Skipping..."
